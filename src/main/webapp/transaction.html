@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MainPage</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="transaction.js"></script>
+<script src="logout.js"></script>
+</head>
+<body>
+<div class="topnav">
+  <a class="active" href="bankaccount.html">Bank accounts</a>
+  <a href="transaction.html">Transactions</a>
+  <a href="accounthistory.html">Account history</a>
+  <button class="logout">Log out</button>
+</div>
+<h1>
+Transactions:
+</h1>
+<table class="table">
+	<tr>
+	   <th>Source account number</th>
+	   <th>Target account number</th> 
+	   <th>Amount</th>
+	 </tr>
+	 <tr>
+	 	<td>
+	 		<select class="source">
+	 		</select>
+	 	</td>
+	 	<td>
+	 		<select class="target">
+	 		</select>
+	 	</td>
+	 	<td><input type="number" class="amount"></td>
+	 	<td><input type="submit" class="transaction" value="Transaction"></td>
+	 </tr>
+</table>
+<div class="errormessage">
+</div>
+</body>
+</html>

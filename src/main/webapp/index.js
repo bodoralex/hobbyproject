@@ -1,5 +1,6 @@
 $(document).ready(function	() {
 	$(".submit").click(function() {
+		document.getElementsByClassName("errormessage")[0].innerHTML = "";
 		var username = $(".username").val();
 		var password = $(".password").val();
 		if(password.length < 1){
@@ -11,10 +12,10 @@ $(document).ready(function	() {
 				datatype: "json",
 				data: { "username": username, "password": password },
 				success: function(data){
-					if(data == "ok"){
-						alert(data);
+					if(data == "notok"){
+						$(".errormessage").append("<p>Username or password invalid.<p>");
 					} else {
-						$(".errormessage").append("<p>" + data + "<p>");
+						window.location.href = "bankaccount.html";
 					}
 				}
 			})

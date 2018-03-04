@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MainPage</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="accounthistory.js"></script>
+<script src="logout.js"></script>
+</head>
+<body>
+<div class="topnav">
+  <a href="bankaccount.html">Bank accounts</a>
+  <a href="transaction.html">Transaction</a>
+  <a href="accounthistory.html">Account history</a>
+  <button class="logout">Log out</button>
+</div>
+<h1>
+Account history:
+</h1>
+<select class="sourceaccount"><option selected>Choose account...</option></select>
+<input type="submit" class="choose" value="Choose"><br>
+<table class="historytable">
+	<tr>
+	   <th>Source/target account</th>
+	   <th>Currency</th> 
+	   <th>Amount</th>
+	   <th>Transaction type</th>
+	 </tr>
+</table>
+</body>
+</html>

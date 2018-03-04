@@ -32,9 +32,9 @@ public class UserDBDao {
 			e.printStackTrace();
 		}
     	if(user.getPassword().equals(password)){
-    		return gson.toJson("ok");
+    		return gson.toJson(user);
     	}
-    	return gson.toJson("Username or password invalid.");
+    	return gson.toJson("notok");
     }
 
 }

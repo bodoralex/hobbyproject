@@ -1,0 +1,19 @@
+$(document).ready(function	() {
+	$.ajax({
+		method: "GET",
+		url: "bankaccount",
+		datatype: "json",
+		success: function(data){
+			if(data.length == 0){
+				document.getElementsByClassName("details")[0].innerHTML = "";
+				$(".message").append("<h3>You haven't got any bank account.</h3>");
+			}else {
+				$.each(data, function(ArrayID, BankAccount){
+					$(".details").append("<tr><td>" + BankAccount.accountNumber + 
+							"</td><td> " + BankAccount.currency + 
+							"</td> <td>" + BankAccount.balance + "</td></tr>");
+				})
+			}
+		}
+	})
+})

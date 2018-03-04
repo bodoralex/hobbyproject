@@ -2,14 +2,14 @@ package com.codecool.finastra.models;
 
 //This class created based on database bank accounts table
 
-public class BankAccounts {
+public class BankAccount {
 	
 	private String accountNumber;
 	private String currency;
 	private int balance;
 	private int userId;
 	
-	public BankAccounts(String accountNumber, String currency, int balance, int userId) {
+	public BankAccount(String accountNumber, String currency, int balance, int userId) {
 		super();
 		this.accountNumber = accountNumber;
 		this.currency = currency;

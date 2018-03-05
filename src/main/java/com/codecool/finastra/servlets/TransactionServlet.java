@@ -13,7 +13,7 @@ import javax.xml.namespace.QName;
 
 import com.codecool.finastra.dao.BankAccountDBDao;
 
-@WebServlet("/transaction")
+@WebServlet("/transactionpage")
 public class TransactionServlet extends HttpServlet{
 	
 	private BankAccountDBDao bankAccountDBDao = new BankAccountDBDao();

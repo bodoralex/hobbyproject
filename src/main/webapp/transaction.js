@@ -10,15 +10,15 @@ $(document).ready(function	() {
 		} else if(amount == ""){
 			$(".errormessage").append("<p>Invalid amount</p>");
 		}else {
-			/*$.ajax({
+			$.ajax({
 				method: "GET",
-				url: "transition",
-				data: { "source" : source, "target" : target, "amount" : amount }
+				url: "transfer",
+				datatype: "json",
+				data: { "source" : source, "target" : target, "amount" : amount },
 				success: function(data){
-					console.log(data);
+					$(".errormessage").append("<p>" + data + "</p>");
 				}
-	        })*/
-			console.log("ok");
+	        })
 		}
 	})
 })
@@ -26,10 +26,10 @@ $(document).ready(function	() {
 function getSessionId(){
 	$.ajax({
 		method:"POST",
-		url:"transaction",
+		url:"transactionpage",
 		datatype: "json",
 		success: function(data){
-			getAllAccount(data)
+			getAccount(data)
 		}
 	})
 }
@@ -38,16 +38,31 @@ function getAllAccount(id){
 	console.log(id);
 	$.ajax({
 		method:"GET",
-		url:"transaction",
+		url:"transactionpage",
 		datatype: "json",
 		success: function(data){
 			console.log(data)
 			$.each(data, function(ArrayID, BankAccount){
 				if(BankAccount.userId == Number(id)){
-					$(".source").append("<option selected>" + BankAccount.accountNumber + "</option>")
+					$(".source").append("<option>" + BankAccount.accountNumber + "</option>")
 				}
-				$(".target").append("<option selected>" + BankAccount.accountNumber + "</option>")
+				$(".target").append("<option>" + BankAccount.accountNumber + "</option>")
 			})
+		}
+	})
+}
+function getAccount(id){
+	$.ajax({
+		method: "GET",
+		url: "bankaccount",
+		datatype: "json",
+		success: function(data){
+			if(data.length == 0){
+				document.getElementsByClassName("table")[0].innerHTML = "";
+				$(".errormessage").append("<h3>You haven't got any bank account.</h3>");
+			} else {
+				getAllAccount(id);
+			}
 		}
 	})
 }

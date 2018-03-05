@@ -59,6 +59,73 @@ public class BankAccountDBDao {
 		Gson gson = new Gson();
 		return gson.toJson(bankAccounts);
 	}
+	
+	public String getCurrency(String accountNumber){
+		String currency = null;
+		try{
+			PreparedStatement statement = connection.prepareStatement("SELECT currency FROM `bankaccounts` WHERE account_number=?");
+			statement.setString(1, accountNumber);
+	    	ResultSet resultSet = statement.executeQuery();
+	    	if(resultSet.next()){
+	    		currency = resultSet.getString(1);
+	    		
+	    	}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return currency;
+	}
+	
+	public int getBalance(String accountNumber){
+		int balance = 0;
+		try{
+			PreparedStatement statement = connection.prepareStatement("SELECT balance FROM `bankaccounts` WHERE account_number=?");
+			statement.setString(1, accountNumber);
+	    	ResultSet resultSet = statement.executeQuery();
+	    	if(resultSet.next()){
+	    		balance = resultSet.getInt(1);
+	    		
+	    	}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return balance;
+	}
+	
+	public void createTransfer(String sourceAccount, String targetAccount, int amount) throws SQLException{
+		
+		PreparedStatement deductSource = null;
+		PreparedStatement addTarget = null;
+		
+		
+		try {
+			connection.setAutoCommit(false);
+			deductSource = connection.prepareStatement("UPDATE `bankaccounts` SET balance = balance-? WHERE account_number=?");
+			deductSource.setInt(1, amount);
+			deductSource.setString(2, sourceAccount);
+			deductSource.executeUpdate();
+			addTarget = connection.prepareStatement("UPDATE `bankaccounts` SET balance = balance+? WHERE account_number=?");
+			addTarget.setInt(1, amount);
+			addTarget.setString(2, targetAccount);
+			addTarget.executeUpdate();
+			connection.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			connection.rollback();
+		} finally {
+			if (deductSource != null) {
+				deductSource.close();
+			}
+
+			if (addTarget != null) {
+				addTarget.close();
+			}
+		}
+	}
 
 
 }

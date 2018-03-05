@@ -22,7 +22,6 @@ public class TransferServlet extends HttpServlet{
 		//Get the details from clients side.
 		String source = req.getParameter("source").toString();
 		String target = req.getParameter("target").toString();
-		int amount = Integer.parseInt(req.getParameter("amount"));
 		
 		//Check the source and the target account's is the same or not.
 		String sourceCurrency = bankAccountDBDao.getCurrency(source);
@@ -32,20 +31,25 @@ public class TransferServlet extends HttpServlet{
 		int balance = bankAccountDBDao.getBalance(source);
 		
 		PrintWriter out = resp.getWriter();
-		if(!sourceCurrency.equals(targetCurrency)){
-			out.write("Transaction error. The currencies are not the same.");
-			out.close();
-		} else if(balance-amount < 0){
-			out.write("Transaction error. Source account not enough balance for this transaction.");
-			out.close();
-		} else {
-			try {
+		try	{
+			int amount = Integer.parseInt(req.getParameter("amount"));
+			
+			if(!sourceCurrency.equals(targetCurrency)){
+				out.write("Transaction error. The currencies are not the same.");
+				out.close();
+			} else if(balance-amount < 0){
+				out.write("Transaction error. Source account not enough balance for this transaction.");
+				out.close();
+			} else {
 				bankAccountDBDao.createTransfer(source, target, amount);
-			} catch (SQLException e) {
-				e.printStackTrace();
+				out.write("Transaction completed.");
+				out.close();
 			}
-			out.write("Transaction completed.");
+		}catch (NumberFormatException e) {
+			out.write("Amount must be integer.");
 			out.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

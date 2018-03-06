@@ -1,4 +1,8 @@
 $(document).ready(function	() {
+	history.pushState(null, null, location.href);
+	window.onpopstate = function () {
+		history.go(1);
+	}
 	$(".submit").click(function() {
 		document.getElementsByClassName("errormessage")[0].innerHTML = "";
 		var username = $(".username").val();

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.codecool.finastra.Filter;
 
 @WebFilter(urlPatterns = {"/accounthistory","/bankaccount","/logout",
-		"/transactionpage","/transfer","/transaction",
+		"/transactionpage","/transfer","/transaction", "/transition",
 		"/transaction.html","/accounthistory.html","/bankaccount.html"})
 public class SessionFilter extends Filter{
 

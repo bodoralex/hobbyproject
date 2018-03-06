@@ -4,6 +4,7 @@ $(document).ready(function	() {
 	$(".choose").click(function(){
 		document.getElementsByClassName("historytable")[0].innerHTML = "";
 		var sourceAccount = $(".sourceaccount").val();
+		var numberOfAccounts = 0;
 		$.ajax({
 			method: "GET",
 			url: "accounthistory",
@@ -15,12 +16,16 @@ $(document).ready(function	() {
 						"<th>Transaction type</th></tr>")
 				$.each(data, function(ArrayID, AccountHistory){
 					if(AccountHistory.accountNumber == sourceAccount){
+						numberOfAccounts++;
 						$(".historytable").append("<tr><td>" + AccountHistory.sourceTargetAccount + "</td>" +
 								"<td>" + AccountHistory.currency + "</th><td>" + AccountHistory.amount + "</td>" +
 								"<td>" + AccountHistory.transactionType + "</td></tr>");
 					}
-					
 				})
+				if(numberOfAccounts == 0){
+					document.getElementsByClassName("historytable")[0].innerHTML = "";
+					$(".transactionnotyet").append("<h3>You haven't got transaction yet.</h3>")
+				}
 			}
 		})
 	})

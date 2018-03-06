@@ -20,7 +20,7 @@ public class BankAccountsServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//Create session
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(false);
 		//Get the id from session
 		int id = (Integer) session.getAttribute("id");
 		//Get data from DB.

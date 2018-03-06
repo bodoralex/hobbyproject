@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 public class BankAccountDBDao {
 	
 	Connection connection = ConnUtil.getConnection("testjob");
+	private AccountHistoryDBDao accountHIstoryDBDao = new AccountHistoryDBDao();
 	
 	public String getBankAccountDetails(int id){
 		ArrayList<BankAccount> bankAccounts = new ArrayList<BankAccount>();
@@ -100,6 +101,7 @@ public class BankAccountDBDao {
 		
 		PreparedStatement deductSource = null;
 		PreparedStatement addTarget = null;
+		String currency = getCurrency(sourceAccount);
 		
 		
 		try {
@@ -107,10 +109,12 @@ public class BankAccountDBDao {
 			deductSource = connection.prepareStatement("UPDATE `bankaccounts` SET balance = balance-? WHERE account_number=?");
 			deductSource.setInt(1, amount);
 			deductSource.setString(2, sourceAccount);
+			accountHIstoryDBDao.addHistoryDetails(targetAccount, currency, amount, "deduction", sourceAccount);
 			deductSource.executeUpdate();
 			addTarget = connection.prepareStatement("UPDATE `bankaccounts` SET balance = balance+? WHERE account_number=?");
 			addTarget.setInt(1, amount);
 			addTarget.setString(2, targetAccount);
+			accountHIstoryDBDao.addHistoryDetails(sourceAccount, currency, amount, "crediting", targetAccount);
 			addTarget.executeUpdate();
 			connection.commit();
 		} catch (SQLException e) {

@@ -8,17 +8,17 @@ public class AccountHistory {
 	private String sourceTargetAccount;
 	private String currency;
 	private int amount;
-	private String tranzactionType;
+	private String transactionType;
 	private String accountNumber;
 	
 	public AccountHistory(int accountHistoryId, String sourceTargetAccount, String currency, int amount,
-			String tranzactionType, String accountNumber) {
+			String transactionType, String accountNumber) {
 		super();
 		this.accountHistoryId = accountHistoryId;
 		this.sourceTargetAccount = sourceTargetAccount;
 		this.currency = currency;
 		this.amount = amount;
-		this.tranzactionType = tranzactionType;
+		this.transactionType = transactionType;
 		this.accountNumber = accountNumber;
 	}
 
@@ -54,12 +54,12 @@ public class AccountHistory {
 		this.amount = amount;
 	}
 
-	public String getTranzactionType() {
-		return tranzactionType;
+	public String getTransactionType() {
+		return transactionType;
 	}
 
-	public void setTranzactionType(String tranzactionType) {
-		this.tranzactionType = tranzactionType;
+	public void setTransactionType(String transactionType) {
+		this.transactionType = transactionType;
 	}
 
 	public String getAccountNumber() {

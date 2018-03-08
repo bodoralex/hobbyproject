@@ -24,7 +24,6 @@ $(document).ready(function	() {
 				datatype: "json",
 				data: { "username": username, "password": password },
 				success: function(data){
-					console.log(data);
 					if(data.password == ""){
 						$(".errormessage").append("<p>Username or password invalid.<p>");
 					} else {

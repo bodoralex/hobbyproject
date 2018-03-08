@@ -26,7 +26,7 @@ public class LogInServlet extends HttpServlet{
 
 	//Get username and password from frontend
 	//Cast result to User object
-	//If User object's password not equal emptry string
+	//If User object's password not equal ""
 	//Create Session, set attribute id equals to user's id in db
 	//Send response to clients side
 	@Override

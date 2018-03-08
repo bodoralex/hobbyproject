@@ -5,12 +5,42 @@
 <title>LogIn</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="index.js"></script>
+<link rel="stylesheet" type="text/css" href="index.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" 
+integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" 
+crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+crossorigin="anonymous"></script>
 </head>
 <!--Create user name a password field with submit button and an error div-->
 <body>
-	<p>Username:<input type="text" class="username"></p>
+	<!--<p>Username:<input type="text" class="username"></p>
 	<p>Password:<input type="password" class="password"></p>
 	<input type="submit" class="submit" value="Log in">
-	<div class="errormessage"></div>
+	<div class="errormessage"></div>-->
+	
+<div id="fullscreen_bg" class="fullscreen_bg"/>
+<div class="container">
+
+    <div class="form-signin">
+		<h1 class="form-signin-heading text-muted">Log In</h1>
+		<input type="text" class="form-control username" placeholder="Username">
+		<input type="password" class="form-control password" placeholder="Password">
+		<button class="btn btn-lg btn-primary btn-block submit" type="submit">
+			Log In
+		</button>
+		<div class="errormessage"></div>
+	</div>
+
+</div>
 </body>
 </html>

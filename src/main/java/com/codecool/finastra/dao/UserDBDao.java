@@ -39,7 +39,7 @@ public class UserDBDao {
     	if (user.getPassword().equals(password)) {
     		return gson.toJson(user);
     	}
-    	return gson.toJson(user);
+    	return gson.toJson(new User(0, "", ""));
     }
 
 }

@@ -1,0 +1,16 @@
+INSERT INTO testjob.users VALUES (0, "John", "Asd");
+INSERT INTO testjob.users VALUES (0, "Jack", "Aaa");
+INSERT INTO testjob.users VALUES (0, "Jim", "Jim");
+INSERT INTO testjob.users VALUES (0, "George", "MyPasswordTheStrongest");
+INSERT INTO testjob.users VALUES (0, "Phil", "Admin");
+INSERT INTO testjob.users VALUES (0, "Carl", "Pass");
+INSERT INTO testjob.users VALUES (0, "Rick", "TWD");
+
+INSERT INTO testjob.bankaccounts VALUES("12345678-12345678", "USD", 1000, 1);
+INSERT INTO testjob.bankaccounts VALUES("12345678-00000000", "USD", 100, 2);
+INSERT INTO testjob.bankaccounts VALUES("00000000-12345678", "HUF", 50000, 3);
+INSERT INTO testjob.bankaccounts VALUES("00000000-00000000", "HUF", 1000000, 3);
+INSERT INTO testjob.bankaccounts VALUES("11111111-11111111", "HUF", 20000, 5);
+INSERT INTO testjob.bankaccounts VALUES("22222222-22222222", "USD", 1000, 6);
+INSERT INTO testjob.bankaccounts VALUES("33333333-33333333", "USD", 1000, 6);
+INSERT INTO testjob.bankaccounts VALUES("77777777-77777777", "HUF", 1000, 7);

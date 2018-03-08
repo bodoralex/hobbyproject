@@ -1,0 +1,25 @@
+CREATE SCHEMA IF NOT EXISTS testjob;
+
+CREATE TABLE testjob.users (
+	  user_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    pass VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE testjob.bankaccounts (
+    account_number VARCHAR(50) PRIMARY KEY NOT NULL,
+    currency VARCHAR(50),
+    balance INT,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE testjob.accounthistory (
+	account_history_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    source_target_account VARCHAR(50) NOT NULL,
+    currency VARCHAR(50) NOT NULL,
+    amount INT NOT NULL,
+    tranzaction_type VARCHAR(50) NOT NULL,
+    account_number VARCHAR(50) NOT NULL,
+    FOREIGN KEY (account_number) REFERENCES testjob.bankaccounts(account_number)
+);

@@ -13,15 +13,14 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.codecool.finastra.Filter;
+import javax.servlet.Filter;
 
 @WebFilter(urlPatterns = {"/accounthistory","/bankaccount","/logout",
 		"/transactionpage","/transfer","/transaction", "/transition",
 		"/transaction.html","/accounthistory.html","/bankaccount.html",})
-public class SessionFilter extends Filter{
+public class SessionFilter implements Filter{
 
-	@Override
+	
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain cha)
 			throws IOException, ServletException {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) req;

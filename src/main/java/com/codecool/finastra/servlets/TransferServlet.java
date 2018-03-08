@@ -1,4 +1,5 @@
 package com.codecool.finastra.servlets;
+//This servlet communicate with db bankaccount table
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,17 +19,23 @@ public class TransferServlet extends HttpServlet{
 	
 	private BankAccountDBDao bankAccountDBDao = new BankAccountDBDao();
 	
+	//Get the details from clients side
+	//Get target and source accounts currency from db
+	//Check the source and the target account's is the same or not
+	//Check the source account had enough money for the transaction
+	//Create transfer
+	//Catch the exception if the amount us not integer
+	//Every case I send response to clients side
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//Get the details from clients side.
+		
 		String source = req.getParameter("source").toString();
 		String target = req.getParameter("target").toString();
 		
-		//Check the source and the target account's is the same or not.
+		
 		String sourceCurrency = bankAccountDBDao.getCurrency(source);
 		String targetCurrency = bankAccountDBDao.getCurrency(target);
 		
-		//Check the source account had enough money for the transaction.
 		int balance = bankAccountDBDao.getBalance(source);
 		
 		PrintWriter out = resp.getWriter();

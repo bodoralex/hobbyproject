@@ -1,4 +1,5 @@
 package com.codecool.finastra.dao;
+//This class communicate with DB and set or get data from 'bankaccounts' table
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,9 +13,12 @@ import com.google.gson.Gson;
 
 public class BankAccountDBDao {
 	
+	//Create connection with DB 'testjob' schema
 	Connection connection = ConnUtil.getConnection("testjob");
+	//I will add data to 'accounthistory' table so I create a new AccountHistoryDBDao instance
 	private AccountHistoryDBDao accountHIstoryDBDao = new AccountHistoryDBDao();
 	
+	//Get details from 'bankaccount' table based on userId
 	public String getBankAccountDetails(int id){
 		ArrayList<BankAccount> bankAccounts = new ArrayList<BankAccount>();
 		
@@ -38,6 +42,7 @@ public class BankAccountDBDao {
 		return gson.toJson(bankAccounts);
 	}
 	
+	//Get all bank account details from 'bankaccounts' table
 	public String getAllBankAccounts(){
 		
 		ArrayList<BankAccount> bankAccounts = new ArrayList<BankAccount>();
@@ -61,6 +66,7 @@ public class BankAccountDBDao {
 		return gson.toJson(bankAccounts);
 	}
 	
+	//Get bank account currency based on account number from 'bankaccounts' table
 	public String getCurrency(String accountNumber){
 		String currency = null;
 		try{
@@ -79,6 +85,7 @@ public class BankAccountDBDao {
 		return currency;
 	}
 	
+	//Get bank account available balance based on account number from 'bankaccounts' table
 	public int getBalance(String accountNumber){
 		int balance = 0;
 		try{
@@ -97,6 +104,11 @@ public class BankAccountDBDao {
 		return balance;
 	}
 	
+	//Create transfer between 2 accounts
+	//Update the source and the target account balance based on amount
+	//Set auto commit to false so the statement isn't automatically committed after executeUodate() method
+	//Commit all statement after I call connection.commit() method
+	//In catch block I call connection.rollback(), so if something went wrong I cancel all the transactions
 	public void createTransfer(String sourceAccount, String targetAccount, int amount) throws SQLException{
 		
 		PreparedStatement deductSource = null;

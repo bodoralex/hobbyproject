@@ -1,4 +1,5 @@
 package com.codecool.finastra.dao;
+//This class communicate with DB and set or get data from 'accounthistory' table
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,10 +13,13 @@ import com.google.gson.Gson;
 
 public class AccountHistoryDBDao {
 	
+	//Create connection with DB 'testjob' schema
 	Connection connection = ConnUtil.getConnection("testjob");
 	
+	//Add row to 'accounthistory' table. 
 	public void addHistoryDetails(String sourceTargetAccount, String currency, 
 					int amount, String transactionType, String accountNumber){
+		
 		try{
 				PreparedStatement statement = connection.prepareStatement("INSERT INTO accounthistory VALUES (0, ?, ?, ?, ?, ?)");
 				statement.setString(1, sourceTargetAccount);
@@ -29,6 +33,9 @@ public class AccountHistoryDBDao {
 		}
 	}
 	
+	//Get row(s) from 'accounthistory' table based on account number.
+	//Convert data to Json and return with this.
+	//I'm doing this  every dbdao method because it's easier to handle the data on client side.
 	public String getHistoryDetails(String accountNumber){
 		ArrayList<AccountHistory> accountHistories = new ArrayList<AccountHistory>();
 		

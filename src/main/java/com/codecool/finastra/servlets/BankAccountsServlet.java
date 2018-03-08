@@ -1,4 +1,5 @@
 package com.codecool.finastra.servlets;
+//This servlet communicate with db bankaccount table
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,15 +18,16 @@ public class BankAccountsServlet extends HttpServlet{
 	
 	BankAccountDBDao bankAccountDBDao = new BankAccountDBDao();
 	
+	//From the session I get the user's Id
+	//Based on this Id get the data bankAccount table
+	//Send the data to clients side
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//Create session
 		HttpSession session = req.getSession(false);
-		//Get the id from session
 		int id = (Integer) session.getAttribute("id");
-		//Get data from DB.
+		
 		String result = bankAccountDBDao.getBankAccountDetails(id);
-		//Send response to frontend
+		
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		out.write(result);

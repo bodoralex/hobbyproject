@@ -1,4 +1,5 @@
 package com.codecool.finastra.servlets;
+//This servlet communicate with db bankaccount table
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,8 +17,10 @@ import com.codecool.finastra.dao.BankAccountDBDao;
 @WebServlet("/transactionpage")
 public class TransactionServlet extends HttpServlet{
 	
+	//Create bankAccountDBDao instance because I want to communicate with db
 	private BankAccountDBDao bankAccountDBDao = new BankAccountDBDao();
 	
+	//Get all bank account details from db, and send this to clients side
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String result = bankAccountDBDao.getAllBankAccounts();
@@ -27,6 +30,7 @@ public class TransactionServlet extends HttpServlet{
 		out.close();
 	}
 	
+	//Get user's iD from session and send this to clients side
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();

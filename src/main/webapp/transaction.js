@@ -1,28 +1,11 @@
 $(document).ready(function	() {
+	//Call this 2 functions
 	getSessionId();
-	$(".transaction").click(function() {
-		document.getElementsByClassName("errormessage")[0].innerHTML = "";
-		var source = $(".source").val()
-		var target = $(".target").val();
-		var amount = $(".amount").val();
-		if(source == target){
-			$(".errormessage").append("<p>The source and the target account must be different.</p>");
-		} else if(amount == ""){
-			$(".errormessage").append("<p>Invalid amount</p>");
-		}else {
-			$.ajax({
-				method: "GET",
-				url: "transfer",
-				datatype: "json",
-				data: { "source" : source, "target" : target, "amount" : amount },
-				success: function(data){
-					$(".errormessage").append("<p>" + data + "</p>");
-				}
-	        })
-		}
-	})
+	transaction();
 })
 
+//Get session id from server
+//Call getAccount function with data
 function getSessionId(){
 	$.ajax({
 		method:"POST",
@@ -34,6 +17,9 @@ function getSessionId(){
 	})
 }
 
+//Get all account from server
+//Source drop down menu append the account number that belongs to session id
+//Target drop down menu append all account number
 function getAllAccount(id){
 	console.log(id);
 	$.ajax({
@@ -51,6 +37,9 @@ function getAllAccount(id){
 		}
 	})
 }
+//Get account based on iD from server
+//If data is empty show error message
+//Else call getAllAccount() function with id
 function getAccount(id){
 	$.ajax({
 		method: "GET",
@@ -59,10 +48,39 @@ function getAccount(id){
 		success: function(data){
 			if(data.length == 0){
 				document.getElementsByClassName("table")[0].innerHTML = "";
-				$(".errormessage").append("<h3>You haven't got any bank account.</h3>");
+				$(".message").append("<h3>You haven't got any bank account.</h3>");
 			} else {
 				getAllAccount(id);
 			}
+		}
+	})
+}
+
+//When transaction button clicked
+//Get details from fields
+//If source field equals target field show error message
+//If amount field is empty show error message
+//Else send the datas to server and show the data what I get
+function transaction(){
+	$(".transaction").click(function() {
+		document.getElementsByClassName("message")[0].innerHTML = "";
+		var source = $(".source").val()
+		var target = $(".target").val();
+		var amount = $(".amount").val();
+		if(source == target){
+			$(".message").append("<p>The source and the target account must be different.</p>");
+		} else if(amount == ""){
+			$(".message").append("<p>Invalid amount</p>");
+		}else {
+			$.ajax({
+				method: "GET",
+				url: "transfer",
+				datatype: "json",
+				data: { "source" : source, "target" : target, "amount" : amount },
+				success: function(data){
+					$(".message").append("<p>" + data + "</p>");
+				}
+	        })
 		}
 	})
 }

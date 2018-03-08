@@ -7,36 +7,32 @@
 <script src="transaction.js"></script>
 <script src="logout.js"></script>
 </head>
+<!--Create menu and log out button-->
+<!--Create a table with 2 drop down menu and an input field with button-->
+<!--Create message div-->
 <body>
-<div class="topnav">
-  <a class="active" href="bankaccount.html">Bank accounts</a>
-  <a href="transaction.html">Transactions</a>
-  <a href="accounthistory.html">Account history</a>
-  <button class="logout">Log out</button>
-</div>
-<h1>
-Transactions:
-</h1>
-<table class="table">
-	<tr>
-	   <th>Source account number</th>
-	   <th>Target account number</th> 
-	   <th>Amount</th>
-	 </tr>
-	 <tr>
-	 	<td>
-	 		<select class="source">
-	 		</select>
-	 	</td>
-	 	<td>
-	 		<select class="target">
-	 		</select>
-	 	</td>
-	 	<td><input type="number" class="amount"></td>
-	 	<td><input type="submit" class="transaction" value="Transaction"></td>
-	 </tr>
-</table>
-<div class="errormessage">
-</div>
+	<div class="topnav">
+		<a class="active" href="bankaccount.html">Bank accounts</a> <a
+			href="transaction.html">Transactions</a> <a
+			href="accounthistory.html">Account history</a>
+		<button class="logout">Log out</button>
+	</div>
+	<h1>Transactions:</h1>
+	<table class="table">
+		<tr>
+			<th>Source account number</th>
+			<th>Target account number</th>
+			<th>Amount</th>
+		</tr>
+		<tr>
+			<td><select class="source">
+			</select></td>
+			<td><select class="target">
+			</select></td>
+			<td><input type="number" class="amount"></td>
+			<td><input type="submit" class="transaction" value="Transaction"></td>
+		</tr>
+	</table>
+	<div class="message"></div>
 </body>
 </html>

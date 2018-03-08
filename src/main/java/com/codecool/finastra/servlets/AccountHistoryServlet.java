@@ -1,4 +1,5 @@
 package com.codecool.finastra.servlets;
+//This servlet communicate with db accounthistory table
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,8 @@ public class AccountHistoryServlet extends HttpServlet{
 	
 	private AccountHistoryDBDao accountHistoryDBDao = new AccountHistoryDBDao();
 	
+	//Get the account number from request
+	//Send the history details to clients side based on account number
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String accountNumber = req.getParameter("accountNumber");

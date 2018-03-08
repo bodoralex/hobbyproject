@@ -1,3 +1,6 @@
+//When the page is infuse, get bank account details from server
+//If data is empty, show error message
+//Else show bank account details
 $(document).ready(function	() {
 	$.ajax({
 		method: "GET",

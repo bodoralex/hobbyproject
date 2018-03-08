@@ -1,6 +1,7 @@
 package com.codecool.finastra.models;
 
 //This class created based on database bank accounts table
+//I create setters and getters all parameters
 
 public class BankAccount {
 	

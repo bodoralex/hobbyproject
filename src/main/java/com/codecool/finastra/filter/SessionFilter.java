@@ -1,4 +1,7 @@
 package com.codecool.finastra.filter;
+//In this class I create filters.
+//In Webfilter annotation set which urlpatterns wants to be unavailable without session
+//If I haven't got session, the application redirect me to index.html
 
 import java.io.IOException;
 
@@ -15,7 +18,7 @@ import com.codecool.finastra.Filter;
 
 @WebFilter(urlPatterns = {"/accounthistory","/bankaccount","/logout",
 		"/transactionpage","/transfer","/transaction", "/transition",
-		"/transaction.html","/accounthistory.html","/bankaccount.html"})
+		"/transaction.html","/accounthistory.html","/bankaccount.html",})
 public class SessionFilter extends Filter{
 
 	@Override

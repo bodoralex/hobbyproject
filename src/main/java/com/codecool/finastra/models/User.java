@@ -1,6 +1,7 @@
 package com.codecool.finastra.models;
 
 //This class created based on database users table
+//I create setters and getters all parameters
 
 public class User {
 	

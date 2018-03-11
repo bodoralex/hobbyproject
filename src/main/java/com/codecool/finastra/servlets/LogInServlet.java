@@ -36,7 +36,7 @@ public class LogInServlet extends HttpServlet{
 		String result = userDBDao.getUser(username, password);
 		Gson gson = new Gson();
 		User user = gson.fromJson(result, User.class);
-		System.out.println("!!!!Result: " + user.getPassword());
+		PrintWriter out = resp.getWriter();
 		
 		
 		if(!user.getPassword().equals("")){
@@ -44,13 +44,12 @@ public class LogInServlet extends HttpServlet{
 			int id = jsonObject.getInt("userId");
 			HttpSession session = req.getSession();
 			session.setAttribute("id", id);
-			
+			out.write("ok");
+			out.close();
+		} else {
+			out.write("error");
+			out.close();
 		}
-		//Send response to frontend
-		PrintWriter out = resp.getWriter();
-		resp.setContentType("application/json");
-		out.write(result);
-		out.close();
 		
 	}
 	

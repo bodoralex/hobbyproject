@@ -5,18 +5,18 @@ $(document).ready(function	() {
 	}*/
 	
 	//When click submit button
-	//The error message content set empty
+	//The hidden field content set visibility to hidden
 	//Get password and user name from fields
 	//If password field is empty show error message
 	//Else send the password and the user name to server side
 	//Handle the data
-	//If data.password not equal empty string redirect to bankaccount.html, else show error message
+	//If data equal "error" set hidden field visibility to visible, else redirect to bankaccount.html
 	$(".submit").click(function() {
-		document.getElementsByClassName("errormessage")[0].innerHTML = "";
+		document.getElementById('hiddenfield').style.visibility = 'hidden';
 		var username = $(".username").val();
 		var password = $(".password").val();
 		if(password.length < 1){
-			$(".errormessage").append("<p>Username or password invalid</p>")
+			document.getElementById('hiddenfield').style.visibility = 'visible';
 		} else {
 			$.ajax({
 				method: "GET",
@@ -24,8 +24,8 @@ $(document).ready(function	() {
 				datatype: "json",
 				data: { "username": username, "password": password },
 				success: function(data){
-					if(data.password == ""){
-						$(".errormessage").append("<p>Username or password invalid.<p>");
+					if(data == "error"){
+						document.getElementById('hiddenfield').style.visibility = 'visible';
 					} else {
 						window.location.href = "bankaccount.html";
 					}

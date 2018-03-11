@@ -6,33 +6,55 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="transaction.js"></script>
 <script src="logout.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" 
+integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" 
+crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+crossorigin="anonymous"></script>
 </head>
 <!--Create menu and log out button-->
 <!--Create a table with 2 drop down menu and an input field with button-->
 <!--Create message div-->
 <body>
-	<div class="topnav">
-		<a class="active" href="bankaccount.html">Bank accounts</a> <a
-			href="transaction.html">Transactions</a> <a
-			href="accounthistory.html">Account history</a>
-		<button class="logout">Log out</button>
+	<nav class="navbar navbar-inverse">
+  		<div class="container-fluid">
+    		<ul class="nav navbar-nav">
+      			<li class="bankaccount"><a href="bankaccount.html">Bank accounts</a></li>
+      			<li class="active"><a href="transaction.html">Transaction</a></li>
+      			<li><a href="accounthistory.html">Account history</a></li>
+    		</ul>
+    		<button class="btn btn-danger navbar-btn logout">Log out</button>
+  		</div>
+	</nav>
+	<div class="maindiv">
+		<h1>Transactions:</h1>
+		<table class="table borderless">
+			<tr>
+				<th>Source account number</th>
+				<th>Target account number</th>
+				<th>Amount</th>
+			</tr>
+			<tr>
+				<td><select class="form-control source">
+				</select></td>
+				<td><select class="form-control target">
+				</select></td>
+				<td style="width: 166px;">
+				<input type="number" class="form-control amount"></td>
+				<td><input type="submit" class="btn transaction" value="Transaction"></td>
+			</tr>
+		</table>
+		<div class="message"></div>
 	</div>
-	<h1>Transactions:</h1>
-	<table class="table">
-		<tr>
-			<th>Source account number</th>
-			<th>Target account number</th>
-			<th>Amount</th>
-		</tr>
-		<tr>
-			<td><select class="source">
-			</select></td>
-			<td><select class="target">
-			</select></td>
-			<td><input type="number" class="amount"></td>
-			<td><input type="submit" class="transaction" value="Transaction"></td>
-		</tr>
-	</table>
-	<div class="message"></div>
 </body>
 </html>

@@ -4,8 +4,6 @@ package com.codecool.finastra.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import com.mysql.cj.xdevapi.CreateIndexParams;
-
 public class ConnUtil {
 	
 	//Set the details to db connection

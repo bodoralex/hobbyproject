@@ -29,6 +29,9 @@ public class SessionFilter implements Filter{
 		if(session == null){
 			httpServletResponse.sendRedirect("index.html");
 		} else {
+			httpServletResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+			httpServletResponse.setHeader("Pragma", "no-cache");
+			httpServletResponse.setDateHeader("Expires", 0);
 			cha.doFilter(req, resp);
 		}
 	}

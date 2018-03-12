@@ -11,7 +11,7 @@ function getSessionId(){
 		url:"transactionpage",
 		datatype: "json",
 		success: function(data){
-			getAccount(data)
+			getAccount(data);
 		}
 	})
 }
@@ -70,7 +70,7 @@ function choose(){
 				})
 				if(numberOfAccounts == 0){
 					document.getElementsByClassName("historytable")[0].innerHTML = "";
-					$(".transactionnotyet").append("<h3>You haven't got transaction yet.</h3>")
+					$(".transactionnotyet").append("<h3>You haven't got transaction yet.</h3>");
 				}
 			}
 		})

@@ -12,14 +12,13 @@ function getSessionId(){
 		url:"transactionpage",
 		datatype: "json",
 		success: function(data){
-			getAccount(data)
+			getAccount(data);
 		}
 	})
 }
 
 //Get all account from server
-//Source drop down menu append the account number that belongs to session id
-//Target drop down menu append all account number
+//Source and target drop down menu append the account number that belongs to session id
 function getAllAccount(id){
 	console.log(id);
 	$.ajax({
@@ -30,8 +29,8 @@ function getAllAccount(id){
 			console.log(data)
 			$.each(data, function(ArrayID, BankAccount){
 				if(BankAccount.userId == Number(id)){
-					$(".source").append("<option>" + BankAccount.accountNumber + "</option>")
-					$(".target").append("<option>" + BankAccount.accountNumber + "</option>")
+					$(".source").append("<option>" + BankAccount.accountNumber + "</option>");
+					$(".target").append("<option>" + BankAccount.accountNumber + "</option>");
 				}
 			})
 		}

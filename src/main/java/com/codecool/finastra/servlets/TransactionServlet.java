@@ -3,6 +3,7 @@ package com.codecool.finastra.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,11 +24,16 @@ public class TransactionServlet extends HttpServlet{
 	//Get all bank account details from db, and send this to clients side
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String result = bankAccountDBDao.getAllBankAccounts();
-		PrintWriter out = resp.getWriter();
-		resp.setContentType("application/json");
-		out.write(result);
-		out.close();
+		String result;
+		try {
+			result = bankAccountDBDao.getAllBankAccounts();
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("application/json");
+			out.write(result);
+			out.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//Get user's iD from session and send this to clients side

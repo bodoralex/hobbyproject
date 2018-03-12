@@ -18,24 +18,21 @@ public class UserDBDao {
     //Get user based on user name and
     //If the password is equal to password saved in db, return user
     //Return error message if the passwords are not the same
-    public String getUser(String username, String password){
+    public String getUser(String username, String password) throws SQLException {
     	User user = new User(0, "","");
     	Gson gson = new Gson();
     	
-    	try {
-	    	PreparedStatement statement = connection.prepareStatement("SELECT * FROM `users` WHERE username=?");
-	    	statement.setString(1, username);
-	    	ResultSet resultSet = statement.executeQuery();
-	    	if (resultSet.next()) {
-	    		Integer userID = resultSet.getInt(1);
-	            String userName = resultSet.getString(2);
-	            String pass = resultSet.getString(3);
+	    PreparedStatement statement = connection.prepareStatement("SELECT * FROM `users` WHERE username=?");
+	   	statement.setString(1, username);
+	   	ResultSet resultSet = statement.executeQuery();
+	   	if (resultSet.next()) {
+	   		Integer userID = resultSet.getInt(1);
+	        String userName = resultSet.getString(2);
+	        String pass = resultSet.getString(3);
 	            
-	            user = new User(userID, userName, pass);
-	    		}
-    	} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	        user = new User(userID, userName, pass);
+	    	}
+	   	
     	if (user.getPassword().equals(password)) {
     		return gson.toJson(user);
     	}

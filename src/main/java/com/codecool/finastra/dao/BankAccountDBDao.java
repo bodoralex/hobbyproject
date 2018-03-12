@@ -18,58 +18,48 @@ public class BankAccountDBDao {
 	//I will add data to 'accounthistory' table so I create a new AccountHistoryDBDao instance
 	private AccountHistoryDBDao accountHIstoryDBDao = new AccountHistoryDBDao();
 	
+	//Create a new bankAccount object and add this to bankAccounts list.
+		private void addAccountsToArrayList(ArrayList<BankAccount> bankAccounts, ResultSet resultSet) throws SQLException {
+			while(resultSet.next()){
+				String accountNumber = resultSet.getString(1);
+				String currency = resultSet.getString(2);
+				int balance = resultSet.getInt(3);
+				int userId = resultSet.getInt(4);
+				
+				bankAccounts.add(new BankAccount(accountNumber, currency, balance, userId));
+			}
+		}
+	
 	//Get details from 'bankaccount' table based on userId
-	public String getBankAccountDetails(int id){
+	public String getBankAccountDetails(int id)throws SQLException{
 		ArrayList<BankAccount> bankAccounts = new ArrayList<BankAccount>();
 		
-		try{
-			PreparedStatement statement = connection.prepareStatement("SELECT * FROM `bankaccounts` WHERE user_id=?");
-	    	statement.setInt(1, id);
-	    	ResultSet resultSet = statement.executeQuery();
-	    	while(resultSet.next()){
-	    		String accountNumber = resultSet.getString(1);
-	    		String currency = resultSet.getString(2);
-	    		int balance = resultSet.getInt(3);
-	    		int userId = resultSet.getInt(4);
-	    		
-	    		bankAccounts.add(new BankAccount(accountNumber, currency, balance, userId));
-	    	}
+		PreparedStatement statement = connection.prepareStatement("SELECT * FROM `bankaccounts` WHERE user_id=?");
+	   	statement.setInt(1, id);
+	   	ResultSet resultSet = statement.executeQuery();
+	   	addAccountsToArrayList(bankAccounts, resultSet);
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		Gson gson = new Gson();
 		return gson.toJson(bankAccounts);
 	}
 	
 	//Get all bank account details from 'bankaccounts' table
-	public String getAllBankAccounts(){
+	public String getAllBankAccounts() throws SQLException{
 		
 		ArrayList<BankAccount> bankAccounts = new ArrayList<BankAccount>();
 		
-		try{
-			PreparedStatement statement = connection.prepareStatement("SELECT * FROM `bankaccounts`");
-	    	ResultSet resultSet = statement.executeQuery();
-	    	while(resultSet.next()){
-	    		String accountNumber = resultSet.getString(1);
-	    		String currency = resultSet.getString(2);
-	    		int balance = resultSet.getInt(3);
-	    		int userId = resultSet.getInt(4);
-	    		
-	    		bankAccounts.add(new BankAccount(accountNumber, currency, balance, userId));
-	    	}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		PreparedStatement statement = connection.prepareStatement("SELECT * FROM `bankaccounts`");
+    	ResultSet resultSet = statement.executeQuery();
+    	addAccountsToArrayList(bankAccounts, resultSet);
+
 		Gson gson = new Gson();
 		return gson.toJson(bankAccounts);
 	}
 	
 	//Get bank account currency based on account number from 'bankaccounts' table
-	public String getCurrency(String accountNumber){
+	public String getCurrency(String accountNumber) throws SQLException{
 		String currency = null;
-		try{
+
 			PreparedStatement statement = connection.prepareStatement("SELECT currency FROM `bankaccounts` WHERE account_number=?");
 			statement.setString(1, accountNumber);
 	    	ResultSet resultSet = statement.executeQuery();
@@ -77,29 +67,20 @@ public class BankAccountDBDao {
 	    		currency = resultSet.getString(1);
 	    		
 	    	}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		
 		return currency;
 	}
 	
 	//Get bank account available balance based on account number from 'bankaccounts' table
-	public int getBalance(String accountNumber){
+	public int getBalance(String accountNumber) throws SQLException{
 		int balance = 0;
-		try{
-			PreparedStatement statement = connection.prepareStatement("SELECT balance FROM `bankaccounts` WHERE account_number=?");
-			statement.setString(1, accountNumber);
-	    	ResultSet resultSet = statement.executeQuery();
-	    	if(resultSet.next()){
-	    		balance = resultSet.getInt(1);
-	    		
-	    	}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
+		PreparedStatement statement = connection.prepareStatement("SELECT balance FROM `bankaccounts` WHERE account_number=?");
+		statement.setString(1, accountNumber);
+    	ResultSet resultSet = statement.executeQuery();
+	    if(resultSet.next()){
+	   		balance = resultSet.getInt(1);  		
+	   	}
 		
 		return balance;
 	}

@@ -17,7 +17,7 @@ import javax.servlet.Filter;
 
 @WebFilter(urlPatterns = {"/accounthistory","/bankaccount","/logout",
 		"/transactionpage","/transfer","/transaction", "/transition",
-		"/transaction.html","/accounthistory.html","/bankaccount.html",})
+		"/transaction.html","/accounthistory.html","/bankaccount.html"})
 public class SessionFilter implements Filter{
 
 	

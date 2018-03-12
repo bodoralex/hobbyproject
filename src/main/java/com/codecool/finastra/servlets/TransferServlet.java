@@ -29,17 +29,15 @@ public class TransferServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String source = req.getParameter("source").toString();
-		String target = req.getParameter("target").toString();
-		
-		
-		String sourceCurrency = bankAccountDBDao.getCurrency(source);
-		String targetCurrency = bankAccountDBDao.getCurrency(target);
-		
-		int balance = bankAccountDBDao.getBalance(source);
+		String source = req.getParameter("source");
+		String target = req.getParameter("target");
 		
 		PrintWriter out = resp.getWriter();
 		try	{
+			String sourceCurrency = bankAccountDBDao.getCurrency(source);
+			String targetCurrency = bankAccountDBDao.getCurrency(target);
+			
+			int balance = bankAccountDBDao.getBalance(source);
 			int amount = Integer.parseInt(req.getParameter("amount"));
 			
 			if(!sourceCurrency.equals(targetCurrency)){

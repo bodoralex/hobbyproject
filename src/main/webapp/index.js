@@ -1,9 +1,4 @@
 $(document).ready(function	() {
-	/*history.pushState(null, null, location.href);
-	window.onpopstate = function () {
-		history.go(1);
-	}*/
-	
 	//When click submit button
 	//The hidden field content set visibility to hidden
 	//Get password and user name from fields

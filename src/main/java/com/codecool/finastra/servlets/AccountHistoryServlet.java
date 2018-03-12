@@ -3,6 +3,7 @@ package com.codecool.finastra.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,12 +23,16 @@ public class AccountHistoryServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String accountNumber = req.getParameter("accountNumber");
-		String result = accountHistoryDBDao.getHistoryDetails(accountNumber);
-		
-		PrintWriter out = resp.getWriter();
-		resp.setContentType("application/json");
-		out.write(result);
-		out.close();
+		String result;
+		try {
+			result = accountHistoryDBDao.getHistoryDetails(accountNumber);
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("application/json");
+			out.write(result);
+			out.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

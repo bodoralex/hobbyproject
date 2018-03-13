@@ -1,8 +1,6 @@
 package com.codecool.finastra.filter;
-//In this class I create filters.
-//In Webfilter annotation set which urlpatterns wants to be unavailable without session
-//If I haven't got session, the application redirect me to index.html
 
+//Filter to control users accessing resources
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +9,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-//Filter everything default
+//Filter everything by default
 @WebFilter(urlPatterns = {"/*"})
 public class SessionFilter implements Filter {
 
@@ -27,7 +25,6 @@ public class SessionFilter implements Filter {
         HttpServletRequest servletRequest = (HttpServletRequest) req;
         HttpServletResponse servletResponse = (HttpServletResponse) resp;
 
-
         if (servletRequest.getSession(false) != null ||
                 filterExclude.stream().anyMatch(x -> servletRequest.getRequestURI().contains(x))) {
 
@@ -39,6 +36,5 @@ public class SessionFilter implements Filter {
             servletResponse.sendRedirect("index.html");
         }
     }
-
 
 }

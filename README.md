@@ -17,7 +17,7 @@ You need the above software's to start the project:
 - password admin
 - port: 3306
 
-If you don't want to use this options, open terminal and navigate your apache-tomcat/bin folder than you the next command with your settings:
+If you don't want to use this options, open terminal and navigate your apache-tomcat/bin folder than you type the next command with your settings:
 ```
 export JAVA_OPTS="-DdbHost=yourHostname -DdbUser=yourUsernameInDatabase -DdbPass=yourPasswordInDatabase -DdbPort=yourDatabasePortNumber"
 ```

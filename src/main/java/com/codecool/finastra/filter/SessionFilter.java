@@ -7,29 +7,36 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
-//If I navigate the above pages without session, I redirected to index.html 
-@WebFilter(urlPatterns = {"/accounthistory", "/bankaccount", "/logout",
-        "/transactionpage", "/transfer", "/transaction", "/transition",
-        "/transaction.html", "/accounthistory.html", "/bankaccount.html"})
+//Filter everything default
+@WebFilter(urlPatterns = {"/*"})
 public class SessionFilter implements Filter {
 
-    //Get session, if it null redirect to index.html
-    //Else set header to no-store cache, and allow the navigation
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain cha)
+    //Filter exclude array
+    final static private List<String> filterExclude = Arrays.asList("login", "index", "css");
+
+    //If the session is valid, or the requested resource is accessible without authentication
+    //accept it and set header to no-store cache
+    //Else redirect to index.html
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) req;
-        HttpServletResponse httpServletResponse = (HttpServletResponse) resp;
-        HttpSession session = httpServletRequest.getSession(false);
-        if (session == null) {
-            httpServletResponse.sendRedirect("index.html");
+
+        HttpServletRequest servletRequest = (HttpServletRequest) req;
+        HttpServletResponse servletResponse = (HttpServletResponse) resp;
+
+
+        if (servletRequest.getSession(false) != null ||
+                filterExclude.stream().anyMatch(x -> servletRequest.getRequestURI().contains(x))) {
+
+            servletResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            servletResponse.setHeader("Pragma", "no-cache");
+            servletResponse.setDateHeader("Expires", 0);
+            chain.doFilter(req, resp);
         } else {
-            httpServletResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-            httpServletResponse.setHeader("Pragma", "no-cache");
-            httpServletResponse.setDateHeader("Expires", 0);
-            cha.doFilter(req, resp);
+            servletResponse.sendRedirect("index.html");
         }
     }
 

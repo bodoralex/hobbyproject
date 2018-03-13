@@ -19,7 +19,7 @@ $(document).ready(function	() {
 				datatype: "json",
 				data: { "username": username, "password": password },
 				success: function(data){
-					if(data == "error"){
+                    if (data === "error") {
 						document.getElementById('hiddenfield').style.visibility = 'visible';
 					} else {
 						window.location.href = "bankaccount.html";
@@ -28,4 +28,4 @@ $(document).ready(function	() {
 			})
 		}
 	});
-})
+});

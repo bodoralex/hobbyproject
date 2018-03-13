@@ -15,12 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.Filter;
 
+//If I navigate the above pages without session, I redirected to index.html 
 @WebFilter(urlPatterns = {"/accounthistory","/bankaccount","/logout",
 		"/transactionpage","/transfer","/transaction", "/transition",
 		"/transaction.html","/accounthistory.html","/bankaccount.html"})
 public class SessionFilter implements Filter{
 
-	
+	//Get session, if it null redirect to index.html
+	//Else set header to no-store cache, and allow the navigation
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain cha)
 			throws IOException, ServletException {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) req;

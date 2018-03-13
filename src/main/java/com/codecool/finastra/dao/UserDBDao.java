@@ -15,9 +15,17 @@ public class UserDBDao {
 	//Create connection with DB 'testjob' schema
     Connection connection = ConnUtil.getConnection("testjob");
     
-    //Get user based on user name and
-    //If the password is equal to password saved in db, return user
-    //Return error message if the passwords are not the same
+    /**
+     * description:
+     * Get user based on user name and
+     * If the password is equal to password saved in db, return user
+     * Return error message if the passwords are not the same
+     * 
+     * @param username The user's name
+     * @param password The user's password
+     * @return Convert data to Json and return with this.
+     * @throws SQLException
+     */
     public String getUser(String username, String password) throws SQLException {
     	User user = new User(0, "","");
     	Gson gson = new Gson();

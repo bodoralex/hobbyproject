@@ -16,7 +16,17 @@ public class AccountHistoryDBDao {
 	//Create connection with DB 'testjob' schema
 	Connection connection = ConnUtil.getConnection("testjob");
 	
-	//Add row to 'accounthistory' table. 
+	/**
+	 * description:
+	 * Add row to 'accounthistory' table. 
+	 * 
+	 * @param sourceTargetAccount: The other customer's account number.
+	 * @param currency: The account's currency.
+	 * @param amount: The transfer amount.
+	 * @param transactionType: Deduction or crediting.
+	 * @param accountNumber: the number of the given account
+	 * @throws SQLException
+	 */
 	public void addHistoryDetails(String sourceTargetAccount, String currency, 
 					int amount, String transactionType, String accountNumber) throws SQLException{
 		
@@ -29,9 +39,15 @@ public class AccountHistoryDBDao {
 			statement.executeUpdate();
 	}
 	
-	//Get row(s) from 'accounthistory' table based on account number.
-	//Convert data to Json and return with this.
-	//I'm doing this  every dbdao method because it's easier to handle the data on client side.
+	/**
+	 * description:
+	 * 	Get row(s) from 'accounthistory' table based on account number.
+	 * 
+	 * @param accountNumber: The user's account number
+	 * @return Convert data to Json and return with this.
+	 * Doing this  every dbdao method because it's easier to handle the data on client side.
+	 * @throws SQLException
+	 */
 	public String getHistoryDetails(String accountNumber) throws SQLException{
 		ArrayList<AccountHistory> accountHistories = new ArrayList<AccountHistory>();
 		

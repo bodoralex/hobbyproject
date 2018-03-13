@@ -3,6 +3,7 @@ package com.codecool.finastra.filter;
 //In Webfilter annotation set which urlpatterns wants to be unavailable without session
 //If I haven't got session, the application redirect me to index.html
 
+import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

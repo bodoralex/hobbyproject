@@ -5,9 +5,7 @@
     bottom: 0;
     left: 0;
     background-size: cover;
-    background-position: 50% 50%;
-    background-image: url('picture/backgroundPicture.jpg');
-    background-repeat: repeat;
+    background: url('https://picsum.photos/1920/1080/?random') repeat 50% 50%;
 }
 
 .container {

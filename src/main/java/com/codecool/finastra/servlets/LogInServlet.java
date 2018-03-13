@@ -4,6 +4,7 @@ package com.codecool.finastra.servlets;
 import com.codecool.finastra.dao.UserDBDao;
 import com.codecool.finastra.models.User;
 import com.google.gson.Gson;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

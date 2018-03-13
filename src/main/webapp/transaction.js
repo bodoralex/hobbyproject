@@ -20,13 +20,11 @@ function getSessionId(){
 //Get all account from server
 //Source and target drop down menu append the account number that belongs to session id
 function getAllAccount(id){
-	console.log(id);
 	$.ajax({
 		method:"GET",
 		url:"transactionpage",
 		datatype: "json",
 		success: function(data){
-			console.log(data)
 			$.each(data, function(ArrayID, BankAccount){
 				if(BankAccount.userId == Number(id)){
 					$(".source").append("<option>" + BankAccount.accountNumber + "</option>");
@@ -69,7 +67,7 @@ function transaction(){
 		if(source == target){
 			$(".message").append("<p>The source and the target account must be different.</p>");
 		} else if(amount == ""){
-			$(".message").append("<p>Invalid amount</p>");
+			$(".message").append("<p>Invalid amount.</p>");
 		}else {
 			$.ajax({
 				method: "GET",

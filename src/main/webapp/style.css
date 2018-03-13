@@ -1,5 +1,5 @@
 .fullscreen_bg {
-	position: fixed;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
@@ -7,36 +7,36 @@
     background-size: cover;
     background-position: 50% 50%;
     background-image: url('picture/backgroundPicture.jpg');
-    background-repeat:repeat;
+    background-repeat: repeat;
 }
 
 .container {
-	margin-top: 100px;
+    margin-top: 100px;
 }
 
 #hiddenfield {
-	margin-top : 10px;
-	margin-bottom: -7px;
-	visibility: hidden;
-	text-align: center;
-	color: #FF0000;
+    margin-top: 10px;
+    margin-bottom: -7px;
+    visibility: hidden;
+    text-align: center;
+    color: #FF0000;
 }
 
 .logout {
-	margin-left: 900px;
+    margin-left: 900px;
 }
 
 .bankaccount {
-	margin-left: -15px;
+    margin-left: -15px;
 }
 
 .maindiv {
-	margin-left: 20px;
-	margin-right: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .historytable {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 
 .borderless td, .borderless th {
@@ -44,7 +44,7 @@
 }
 
 .message {
-	margin-left: 10px;
-	margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
   

@@ -4,54 +4,51 @@ package com.codecool.finastra.models;
 //I create setters and getters all parameters
 
 public class BankAccount {
-	
-	private String accountNumber;
-	private String currency;
-	private int balance;
-	private int userId;
-	
-	public BankAccount(String accountNumber, String currency, int balance, int userId) {
-		super();
-		this.accountNumber = accountNumber;
-		this.currency = currency;
-		this.balance = balance;
-		this.userId = userId;
-	}
 
-	public String getAccountNumber() {
-		return accountNumber;
-	}
+    private String accountNumber;
+    private String currency;
+    private int balance;
+    private int userId;
 
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
+    public BankAccount(String accountNumber, String currency, int balance, int userId) {
+        super();
+        this.accountNumber = accountNumber;
+        this.currency = currency;
+        this.balance = balance;
+        this.userId = userId;
+    }
 
-	public String getCurrency() {
-		return currency;
-	}
+    public String getAccountNumber() {
+        return accountNumber;
+    }
 
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
-	public int getBalance() {
-		return balance;
-	}
+    public String getCurrency() {
+        return currency;
+    }
 
-	public void setBalance(int balance) {
-		this.balance = balance;
-	}
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
 
-	public int getUserId() {
-		return userId;
-	}
+    public int getBalance() {
+        return balance;
+    }
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	
-	
-	
-	
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
 
 }

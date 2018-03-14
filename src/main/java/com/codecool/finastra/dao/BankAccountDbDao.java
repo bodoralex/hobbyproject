@@ -11,10 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BankAccountDBDao {
+public class BankAccountDbDao extends DbDao{
 
     //Create connection with DB 'testjob' schema
-    Connection connection = ConnUtil.getConnection("testjob");
     //I will add data to 'accounthistory' table so I create a new AccountHistoryDBDao instance
     private AccountHistoryDBDao accountHIstoryDBDao = new AccountHistoryDBDao();
 

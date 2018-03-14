@@ -1,7 +1,7 @@
 package com.codecool.finastra.servlets;
-//This servlet communicate with db bankaccount table
 
-import com.codecool.finastra.dao.BankAccountDBDao;
+//This servlet communicate with db bankaccount table
+import com.codecool.finastra.dao.BankAccountDbDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
 @WebServlet("/transfer")
 public class TransferServlet extends HttpServlet{
 	
-	private BankAccountDBDao bankAccountDBDao = new BankAccountDBDao();
+	private BankAccountDbDao bankAccountDbDao = new BankAccountDbDao();
 	
 	//Get the details from clients side
 	//Get target and source accounts currency from db
@@ -32,10 +32,10 @@ public class TransferServlet extends HttpServlet{
 		
 		PrintWriter out = resp.getWriter();
 		try	{
-			String sourceCurrency = bankAccountDBDao.getCurrency(source);
-			String targetCurrency = bankAccountDBDao.getCurrency(target);
+			String sourceCurrency = bankAccountDbDao.getCurrency(source);
+			String targetCurrency = bankAccountDbDao.getCurrency(target);
 			
-			int balance = bankAccountDBDao.getBalance(source);
+			int balance = bankAccountDbDao.getBalance(source);
 			int amount = Integer.parseInt(req.getParameter("amount"));
 			
 			if(!sourceCurrency.equals(targetCurrency)){
@@ -45,7 +45,7 @@ public class TransferServlet extends HttpServlet{
 				out.write("Transaction error. Source account not enough balance for this transaction.");
 				out.close();
 			} else {
-				bankAccountDBDao.createTransfer(source, target, amount);
+				bankAccountDbDao.createTransfer(source, target, amount);
 				out.write("Transaction completed.");
 				out.close();
 			}
@@ -56,5 +56,4 @@ public class TransferServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 	}
-
 }

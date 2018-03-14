@@ -1,7 +1,7 @@
 package com.codecool.finastra.servlets;
 //This servlet communicate with db bankaccount table
 
-import com.codecool.finastra.dao.BankAccountDBDao;
+import com.codecool.finastra.dao.BankAccountDbDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
 @WebServlet("/bankaccount")
 public class BankAccountsServlet extends HttpServlet {
 
-    private BankAccountDBDao bankAccountDBDao = new BankAccountDBDao();
+    private BankAccountDbDao bankAccountDbDao = new BankAccountDbDao();
 
     //From the session I get the user's Id
     //Based on this Id get the data bankAccount table
@@ -28,7 +28,7 @@ public class BankAccountsServlet extends HttpServlet {
 
         String result;
         try {
-            result = bankAccountDBDao.getBankAccountDetails(id);
+            result = bankAccountDbDao.getBankAccountDetails(id);
             PrintWriter out = resp.getWriter();
             resp.setContentType("application/json");
             out.write(result);

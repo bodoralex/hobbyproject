@@ -2,18 +2,13 @@ package com.codecool.finastra.dao;
 //This class communicate with DB and set or get data from 'users' table
 
 import com.codecool.finastra.models.User;
-import com.codecool.finastra.util.ConnUtil;
 import com.google.gson.Gson;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDBDao {
-
-    //Create connection with DB 'testjob' schema
-    Connection connection = ConnUtil.getConnection("testjob");
+public class UserDbDao extends DbDao{
 
     /**
      * description:

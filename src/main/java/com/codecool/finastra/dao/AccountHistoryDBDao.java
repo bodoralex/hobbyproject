@@ -1,20 +1,16 @@
 package com.codecool.finastra.dao;
-//This class communicate with DB and set or get data from 'accounthistory' table
 
+//This class communicate with DB and set or get data from 'accounthistory' table
 import com.codecool.finastra.models.AccountHistory;
-import com.codecool.finastra.util.ConnUtil;
 import com.google.gson.Gson;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class AccountHistoryDBDao {
-
-    //Create connection with DB 'testjob' schema
-    Connection connection = ConnUtil.getConnection("testjob");
+public class AccountHistoryDBDao extends DbDao {
 
     /**
      * description:
@@ -43,13 +39,12 @@ public class AccountHistoryDBDao {
      * description:
      * Get row(s) from 'accounthistory' table based on account number.
      *
-     * @param accountNumber: The user's account number
      * @return Convert data to Json and return with this.
      * Doing this  every dbdao method because it's easier to handle the data on client side.
      * @throws SQLException
      */
-    public String getHistoryDetails(String accountNumber) throws SQLException {
-        ArrayList<AccountHistory> accountHistories = new ArrayList<AccountHistory>();
+    public List<AccountHistory> getHistoryDetails() throws SQLException {
+        ArrayList<AccountHistory> accountHistories = new ArrayList<>();
 
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM accounthistory");
         ResultSet resultSet = statement.executeQuery();
@@ -59,11 +54,9 @@ public class AccountHistoryDBDao {
             String currency = resultSet.getString(3);
             int amount = resultSet.getInt(4);
             String transactionType = resultSet.getString(5);
-            String accountnumber = resultSet.getString(6);
-            accountHistories.add(new AccountHistory(accountHistoryId, sourceTargetAccount, currency, amount, transactionType, accountnumber));
+            String accountNumber = resultSet.getString(6);
+            accountHistories.add(new AccountHistory(accountHistoryId, sourceTargetAccount, currency, amount, transactionType, accountNumber));
         }
-        Gson gson = new Gson();
-        return gson.toJson(accountHistories);
+        return accountHistories;
     }
-
 }

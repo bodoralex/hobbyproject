@@ -1,7 +1,7 @@
 package com.codecool.finastra.servlets;
 //This servlet communicate with db users table
 
-import com.codecool.finastra.dao.UserDBDao;
+import com.codecool.finastra.dao.UserDbDao;
 import com.codecool.finastra.models.User;
 import com.google.gson.Gson;
 import org.json.JSONObject;
@@ -19,7 +19,7 @@ import java.sql.SQLException;
 @WebServlet("/login")
 public class LogInServlet extends HttpServlet {
 
-    private UserDBDao userDBDao = new UserDBDao();
+    private UserDbDao userDbDao = new UserDbDao();
 
     //Get username and password from frontend
     //Cast result to User object
@@ -32,7 +32,7 @@ public class LogInServlet extends HttpServlet {
         String password = req.getParameter("password");
         String result;
         try {
-            result = userDBDao.getUser(username, password);
+            result = userDbDao.getUser(username, password);
             Gson gson = new Gson();
             User user = gson.fromJson(result, User.class);
             PrintWriter out = resp.getWriter();

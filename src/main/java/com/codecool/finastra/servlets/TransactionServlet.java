@@ -1,7 +1,7 @@
 package com.codecool.finastra.servlets;
 //This servlet communicate with db bankaccount table
 
-import com.codecool.finastra.dao.BankAccountDBDao;
+import com.codecool.finastra.dao.BankAccountDbDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,15 +16,15 @@ import java.sql.SQLException;
 @WebServlet("/transactionpage")
 public class TransactionServlet extends HttpServlet {
 
-    //Create bankAccountDBDao instance because I want to communicate with db
-    private BankAccountDBDao bankAccountDBDao = new BankAccountDBDao();
+    //Create bankAccountDbDao instance because I want to communicate with db
+    private BankAccountDbDao bankAccountDbDao = new BankAccountDbDao();
 
     //Get all bank account details from db, and send this to clients side
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String result;
         try {
-            result = bankAccountDBDao.getAllBankAccounts();
+            result = bankAccountDbDao.getAllBankAccounts();
             PrintWriter out = resp.getWriter();
             resp.setContentType("application/json");
             out.write(result);

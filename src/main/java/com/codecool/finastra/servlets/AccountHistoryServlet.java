@@ -2,6 +2,8 @@ package com.codecool.finastra.servlets;
 //This servlet communicate with db accounthistory table
 
 import com.codecool.finastra.dao.AccountHistoryDBDao;
+import com.codecool.finastra.models.AccountHistory;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/accounthistory")
 public class AccountHistoryServlet extends HttpServlet {
@@ -22,16 +25,15 @@ public class AccountHistoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String accountNumber = req.getParameter("accountNumber");
-        String result;
+        List<AccountHistory> result;
         try {
-            result = accountHistoryDBDao.getHistoryDetails(accountNumber);
+            result = accountHistoryDBDao.getHistoryDetails();
             PrintWriter out = resp.getWriter();
             resp.setContentType("application/json");
-            out.write(result);
+            out.write(new Gson().toJson(result));
             out.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 }

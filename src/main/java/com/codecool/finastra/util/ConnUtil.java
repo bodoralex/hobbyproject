@@ -16,7 +16,9 @@ public class ConnUtil {
     //Create connection and return with this
     public static Connection getConnection(String dbName) {
         Connection connection;
-        String dbAddress = String.format("jdbc:mysql://%s:%d/%s?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", DATABASE_HOST, DATABASE_PORT, dbName);
+        String dbAddress = String.format(
+                "jdbc:mysql://%s:%d/%s?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false",
+                DATABASE_HOST, DATABASE_PORT, dbName);
         try {
             Class.forName(DRIVER).newInstance();
             connection = DriverManager.getConnection(dbAddress, DATABASE_USER, DATABASE_PASSWORD);

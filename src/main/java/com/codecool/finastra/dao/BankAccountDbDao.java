@@ -2,10 +2,8 @@ package com.codecool.finastra.dao;
 //This class communicate with DB and set or get data from 'bankaccounts' table
 
 import com.codecool.finastra.models.BankAccount;
-import com.codecool.finastra.util.ConnUtil;
 import com.google.gson.Gson;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +11,6 @@ import java.util.ArrayList;
 
 public class BankAccountDbDao extends DbDao{
 
-    //Create connection with DB 'testjob' schema
     //I will add data to 'accounthistory' table so I create a new AccountHistoryDBDao instance
     private AccountHistoryDBDao accountHIstoryDBDao = new AccountHistoryDBDao();
 
@@ -158,7 +155,6 @@ public class BankAccountDbDao extends DbDao{
             if (deductSource != null) {
                 deductSource.close();
             }
-
             if (addTarget != null) {
                 addTarget.close();
             }

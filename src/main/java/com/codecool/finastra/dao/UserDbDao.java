@@ -1,8 +1,8 @@
 package com.codecool.finastra.dao;
 //This class communicate with DB and set or get data from 'users' table
 
+import com.codecool.finastra.exception.WrongUserNameOrPasswordException;
 import com.codecool.finastra.models.User;
-import com.google.gson.Gson;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,9 +21,8 @@ public class UserDbDao extends DbDao{
      * @return Convert data to Json and return with this.
      * @throws SQLException
      */
-    public String getUser(String username, String password) throws SQLException {
-        User user = new User(0, "", "");
-        Gson gson = new Gson();
+    public User getUser(String username, String password) throws SQLException, WrongUserNameOrPasswordException {
+        User user = new User();
 
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM `users` WHERE username=?");
         statement.setString(1, username);
@@ -36,10 +35,10 @@ public class UserDbDao extends DbDao{
             user = new User(userID, userName, pass);
         }
 
-        if (user.getPassword().equals(password)) {
-            return gson.toJson(user);
+        if (!user.getPassword().equals(password)) {
+            throw new WrongUserNameOrPasswordException();
         }
-        return gson.toJson(new User(0, "", ""));
+        return user;
     }
 
 }

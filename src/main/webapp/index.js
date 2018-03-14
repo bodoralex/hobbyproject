@@ -14,7 +14,7 @@ $(document).ready(function () {
             document.getElementById('hiddenfield').style.visibility = 'visible';
         } else {
             $.ajax({
-                method: "GET",
+                method: "POST",
                 url: "login",
                 datatype: "json",
                 data: {"username": username, "password": password},

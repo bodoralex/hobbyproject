@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class BankAccountDbDao extends DbDao{
 
-    //I will add data to 'accounthistory' table so I create a new AccountHistoryDBDao instance
-    private AccountHistoryDBDao accountHIstoryDBDao = new AccountHistoryDBDao();
+    //I will add data to 'accounthistory' table so I create a new AccountHistoryDbDao instance
+    private AccountHistoryDbDao accountHIstoryDbDao = new AccountHistoryDbDao();
 
     /**
      * description:
@@ -140,12 +140,12 @@ public class BankAccountDbDao extends DbDao{
             deductSource = connection.prepareStatement("UPDATE `bankaccounts` SET balance = balance-? WHERE account_number=?");
             deductSource.setInt(1, amount);
             deductSource.setString(2, sourceAccount);
-            accountHIstoryDBDao.addHistoryDetails(targetAccount, currency, amount, "deduction", sourceAccount);
+            accountHIstoryDbDao.addHistoryDetails(targetAccount, currency, amount, "deduction", sourceAccount);
             deductSource.executeUpdate();
             addTarget = connection.prepareStatement("UPDATE `bankaccounts` SET balance = balance+? WHERE account_number=?");
             addTarget.setInt(1, amount);
             addTarget.setString(2, targetAccount);
-            accountHIstoryDBDao.addHistoryDetails(sourceAccount, currency, amount, "crediting", targetAccount);
+            accountHIstoryDbDao.addHistoryDetails(sourceAccount, currency, amount, "crediting", targetAccount);
             addTarget.executeUpdate();
             connection.commit();
         } catch (SQLException e) {

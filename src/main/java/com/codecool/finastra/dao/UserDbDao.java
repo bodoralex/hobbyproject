@@ -8,7 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDbDao extends DbDao{
+@Deprecated
+public class UserDbDao extends DbDao implements LegacyUserDao {
 
     /**
      * description:
@@ -21,7 +22,8 @@ public class UserDbDao extends DbDao{
      * @return Convert data to Json and return with this.
      * @throws SQLException
      */
-    public User getUser(String username, String password) throws SQLException, WrongUserNameOrPasswordException {
+    @Override
+    public User getUserByUserName(String username, String password) throws SQLException, WrongUserNameOrPasswordException {
         User user = new User();
 
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM `users` WHERE username=?");
@@ -35,10 +37,10 @@ public class UserDbDao extends DbDao{
             user = new User(userID, userName, pass);
         }
 
-        if (!user.getPassword().equals(password)) {
-            throw new WrongUserNameOrPasswordException();
+        if (user.getPassword().equals(password)) {
+            return user;
         }
-        return user;
+        throw new WrongUserNameOrPasswordException();
     }
 
 }

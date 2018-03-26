@@ -2,7 +2,6 @@ package com.codecool.finastra.dao;
 
 //This class communicate with DB and set or get data from 'accounthistory' table
 import com.codecool.finastra.models.AccountHistory;
-import com.google.gson.Gson;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountHistoryDBDao extends DbDao {
+public class AccountHistoryDbDao extends DbDao {
 
     /**
      * description:

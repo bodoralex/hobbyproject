@@ -8,12 +8,14 @@ public class User {
     private int userId;
     private String username;
     private String password;
+    private String hashedPassword;
 
-    public User(int userId, String username, String password) {
+
+    public User(int userId, String username, String plainPassword) {
         super();
         this.userId = userId;
         this.username = username;
-        this.password = password;
+        this.password = plainPassword;
     }
 
     public User() {
@@ -43,5 +45,12 @@ public class User {
         this.password = password;
     }
 
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
+    }
 
 }

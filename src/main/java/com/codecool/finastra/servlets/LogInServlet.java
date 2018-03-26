@@ -17,7 +17,8 @@ import java.sql.SQLException;
 @WebServlet("/login")
 public class LogInServlet extends HttpServlet {
 
-    private UserDbDao userDbDao = new UserDbDao();
+    private UserDbDao legacyUserDao = new UserDbDao();
+    private AuthService authService = new DefaultAuthService();
 
     //Get username and password from frontend
     //Cast result to User object
@@ -30,7 +31,7 @@ public class LogInServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         try {
-            User user = userDbDao.getUser(req.getParameter("username"), req.getParameter("password"));
+            User user = legacyUserDao.getUserByUserName(req.getParameter("username"), req.getParameter("password"));
 
             req.getSession().setAttribute("id", user.getUserId());
             out.write("ok");

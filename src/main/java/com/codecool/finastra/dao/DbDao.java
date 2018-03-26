@@ -6,5 +6,10 @@ import java.sql.Connection;
 
 class DbDao {
     //Create connection with DB 'testjob' schema
-    final Connection connection = ConnUtil.getConnection("testjob");
+    final Connection connection;
+
+    DbDao() {
+        connection = ConnUtil.getConnection("testjob");
+        //TODO assertnull 'n' exceptions
+    }
 }
